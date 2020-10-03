@@ -1,5 +1,5 @@
-const articlesRouter = require('./articles/aritclesRouter');
+const { articleRouter } = require('./articles/articleRouter');
 
 module.exports = {
-  articlesRouter,
+  articleRouter,
 };

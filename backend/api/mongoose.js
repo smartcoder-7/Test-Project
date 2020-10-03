@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const fs = require('fs');
 const config = require('../config');
 
+const modelPaths = ['articles/articleModel'];
+
 const initializeMongo = () => {
   if (config.isDev) {
     mongoose.set('debug', true);
@@ -20,10 +22,8 @@ const initializeMongo = () => {
     }
   );
 
-  const modelPath = `${__dirname}/models`;
-
-  fs.readdirSync(modelPath).forEach((file) => {
-    require(`${modelPath}/${file}`); // eslint-disable-line
+  modelPaths.forEach((path) => {
+    require(`${__dirname}/${path}`); // eslint-disable-line
   });
 };
 

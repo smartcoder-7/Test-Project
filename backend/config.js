@@ -15,4 +15,5 @@ module.exports = {
   port: parseInt(process.env.PORT, 10) || 4000,
   isDev,
   mongoURL: process.env.MONGODB_URI || 'mongodb://localhost:27017/bavity-test',
+  newsApiKey: process.env.NEWS_API_KEY,
 };
