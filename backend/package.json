@@ -1,0 +1,34 @@
+{
+  "name": "blavity-backend",
+  "version": "0.0.1",
+  "description": "blavity-test-project",
+  "main": "index.js",
+  "scripts": {
+    "serve": "nodemon index.js",
+    "start": "NODE_ENV=production node index.js",
+    "db:migrate": "node migrate.js",
+    "db:revert": "node migrate.js revert",
+    "db:revert-last": "node migrate.js revert"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.1.1",
+    "mongoose": "^5.10.7",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.10.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.1.2"
+  }
+}
