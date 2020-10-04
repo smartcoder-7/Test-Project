@@ -1,10 +1,10 @@
 {
   "parser": "babel-eslint",
   "extends": ["airbnb-base", "prettier"],
-  "plugins": [],
+  "plugins": ["prettier"],
   "settings": {
     "import/resolver": {
-      "babel-module": {}
+      "node": {}
     }
   },
   "rules": {

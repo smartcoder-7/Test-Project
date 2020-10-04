@@ -1,6 +1,13 @@
+const { articleService } = require('./articleService');
+
 class ArticleController {
   async list(req, res, next) {
-    return res.status(200).json({ success: true });
+    try {
+      const response = articleService.list();
+      return res.status(200).json({ success: true });
+    } catch (error) {
+      next(error);
+    }
   }
 }
 
