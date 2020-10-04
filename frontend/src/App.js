@@ -1,22 +1,22 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { Router } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
+
+import store, { history, persistor } from './configureStore';
+import Routes from './routes';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Router history={history}>
+          <div className="App">
+            <Routes />
+          </div>
+        </Router>
+      </PersistGate>
+    </Provider>
   );
 }
 
