@@ -6,7 +6,7 @@ import ArticleCard from 'components/ArticleCard';
 const DetailedView = () => {
   console.log('I am on Detailed view');
   return (
-    <CardPage title="Article Detailed View">
+    <CardPage title="Article Detailed View" elevation={0}>
       <ArticleCard />
     </CardPage>
   );

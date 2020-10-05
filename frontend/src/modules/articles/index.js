@@ -12,7 +12,7 @@ const ArticleRoutes = () => {
     <Switch>
       <Route exact path={`${url}/:id`} component={DetailedView} />
       <Route exact path={`${url}`} component={ListView} />
-      {/* <Redirect to={`${url}`} /> */}
+      <Redirect to={`${url}`} />
     </Switch>
   );
 };

@@ -7,9 +7,10 @@ import Paper from '@material-ui/core/Paper';
 CardPage.propTypes = {
   children: PropTypes.node,
   title: PropTypes.string,
+  elevation: PropTypes.number,
 };
 
-export default function CardPage({ title, children }) {
+export default function CardPage({ title, elevation = 1, children }) {
   return (
     <Box
       display="flex"
@@ -23,9 +24,9 @@ export default function CardPage({ title, children }) {
           {title}
         </Typography>
       )}
-      <Box component={Paper} p={2}>
+      <Paper p={2} elevation={elevation}>
         {children}
-      </Box>
+      </Paper>
     </Box>
   );
 }

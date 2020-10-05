@@ -3,21 +3,18 @@ import { put, takeLatest, call } from 'redux-saga/effects';
 import request from '../../../utils/apiRequest';
 import * as CONSTANTS from './constants';
 
-import {
-  listArticlesRequest,
-  listArticlesSuccess,
-  listArticlesError,
-} from './actions';
+import { listArticlesSuccess, listArticlesError } from './actions';
 
-function* listArticles(action) {
+function* listArticles() {
   try {
     const data = yield call(request, '/articles');
-    yield put(listArticlesSuccess(data));
+    console.log(data);
+    yield put(listArticlesSuccess(data.articles));
   } catch (error) {
     yield put(listArticlesError(error));
   }
 }
 
 export default function* articlesSaga() {
-  yield takeLatest(CONSTANTS.LIST_ARTICLES_REQUEST, listArticlesRequest);
+  yield takeLatest(CONSTANTS.LIST_ARTICLES_REQUEST, listArticles);
 }
