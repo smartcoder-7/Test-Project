@@ -16,4 +16,5 @@ module.exports = {
   isDev,
   mongoURL: process.env.MONGODB_URI || 'mongodb://localhost:27017/bavity-test',
   newsApiKey: process.env.NEWS_API_KEY,
+  MQConnectionUrl: process.env.MQ_CONNECTION_URL,
 };

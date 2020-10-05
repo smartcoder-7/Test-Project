@@ -4,9 +4,10 @@ const helmet = require('helmet');
 const compression = require('compression');
 const cors = require('cors');
 const morgan = require('morgan');
-const config = require('./config');
 
+const config = require('./config');
 const initializeDB = require('./api/mongoose');
+require('./api/services/cronJob');
 
 // initialize db on the top to have models available below
 initializeDB();
@@ -17,9 +18,7 @@ const app = express();
 app.use(morgan('combined'));
 app.use(helmet({ frameguard: false }));
 app.use(compression());
-app.use(
-  bodyParser.json()
-);
+app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
     extended: false,
