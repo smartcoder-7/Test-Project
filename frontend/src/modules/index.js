@@ -6,7 +6,7 @@ const ModuleRoutes = () => {
   return (
     <Switch>
       <Route path="/articles" component={Articles} />
-      <Redirect to="/articles" />
+      {/* <Redirect to="/articles" /> */}
     </Switch>
   );
 };
