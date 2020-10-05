@@ -18,13 +18,10 @@ app.use(morgan('combined'));
 app.use(helmet({ frameguard: false }));
 app.use(compression());
 app.use(
-  bodyParser.json({
-    limit: config.uploadLimit,
-  })
+  bodyParser.json()
 );
 app.use(
   bodyParser.urlencoded({
-    limit: config.uploadLimit,
     extended: false,
   })
 );
