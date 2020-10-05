@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
+import { listArticlesRequest } from '../redux/actions';
 import CardPage from 'containers/layout/CardPage';
 import ArticleCard from 'components/ArticleCard';
+import LoadingContainer from 'components/LoadingContainer';
 
 const DetailedView = () => {
-  console.log('I am on Detailed view');
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const { loading, list } = useSelector((state) => state.article);
+
+  useEffect(() => {
+    if (list[id]) return;
+    dispatch(listArticlesRequest());
+  }, [id, list, dispatch]);
+
   return (
-    <CardPage title="Article Detailed View" elevation={0}>
-      <ArticleCard />
-    </CardPage>
+    <LoadingContainer loading={loading}>
+      <CardPage title="Article Detailed View" elevation={0}>
+        {list[id] && <ArticleCard data={list[id]} />}
+      </CardPage>
+    </LoadingContainer>
   );
 };
 

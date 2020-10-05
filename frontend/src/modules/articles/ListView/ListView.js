@@ -45,7 +45,7 @@ export default function CheckboxListSecondary() {
           {list.map((value, index) => {
             const labelId = `checkbox-list-secondary-label-${value}`;
             return (
-              <Link to={`/articles/1`} key={`link_${index}`}>
+              <Link to={`/articles/${index}`} key={`link_${index}`}>
                 <ListItem button>
                   <ListItemAvatar>
                     <Avatar
