@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
+import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -14,7 +15,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import useStyles from './style';
 
-export default function ArticleCard({ data }) {
+export default function ArticleCard({ data, onSave, isSaving }) {
   const {
     author,
     title,
@@ -31,12 +32,16 @@ export default function ArticleCard({ data }) {
     setExpanded(!expanded);
   };
 
+  const handleSave = (data) => {
+    onSave(data);
+  };
+
   return (
     <Card className={classes.root}>
       <CardHeader
         avatar={
           <Avatar aria-label="article-detail" className={classes.avatar}>
-            R
+            {author[0] ? author[0] : 'A'}
           </Avatar>
         }
         title={author}
@@ -46,7 +51,7 @@ export default function ArticleCard({ data }) {
         <CardMedia
           className={classes.media}
           image={urlToImage}
-          title="Paella dish"
+          title="Article Image"
         />
       )}
       <CardContent>
@@ -55,7 +60,11 @@ export default function ArticleCard({ data }) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton
+          aria-label="Add to favorites"
+          onClick={handleSave}
+          disabled={isSaving}
+        >
           <FavoriteIcon />
         </IconButton>
         <IconButton
@@ -73,6 +82,11 @@ export default function ArticleCard({ data }) {
         <CardContent>
           <Typography paragraph>{title}</Typography>
           <Typography paragraph>{content}</Typography>
+          <Box>
+            <a href={url} target="_blank">
+              See the full article...
+            </a>
+          </Box>
         </CardContent>
       </Collapse>
     </Card>

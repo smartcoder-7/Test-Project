@@ -8,6 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Checkbox from '@material-ui/core/Checkbox';
 import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
 
 import Link from 'components/Link';
 import LoadingContainer from 'components/LoadingContainer';
@@ -42,34 +43,38 @@ export default function CheckboxListSecondary() {
     <LoadingContainer loading={loading}>
       <CardPage title="Article List View">
         <List dense className={classes.root}>
-          {list.map((value, index) => {
-            const labelId = `checkbox-list-secondary-label-${value}`;
-            return (
-              <Link to={`/articles/${index}`} key={`link_${index}`}>
-                <ListItem button>
-                  <ListItemAvatar>
-                    <Avatar
-                      alt={`Avatar n°${value + 1}`}
-                      src={value.urlToImage}
+          {list.length ? (
+            list.map((value, index) => {
+              const labelId = `checkbox-list-secondary-label-${value}`;
+              return (
+                <Link to={`/articles/${index}`} key={`link_${index}`}>
+                  <ListItem button>
+                    <ListItemAvatar>
+                      <Avatar
+                        alt={`Avatar n°${value + 1}`}
+                        src={value.urlToImage}
+                      />
+                    </ListItemAvatar>
+                    <ListItemText
+                      id={labelId}
+                      primary={value.title}
+                      secondary={value.description}
                     />
-                  </ListItemAvatar>
-                  <ListItemText
-                    id={labelId}
-                    primary={value.title}
-                    secondary={value.description}
-                  />
-                  <ListItemSecondaryAction>
-                    <Checkbox
-                      edge="end"
-                      onChange={handleToggle(value)}
-                      checked={checked.indexOf(value) !== -1}
-                      inputProps={{ 'aria-labelledby': labelId }}
-                    />
-                  </ListItemSecondaryAction>
-                </ListItem>
-              </Link>
-            );
-          })}
+                    <ListItemSecondaryAction>
+                      <Checkbox
+                        edge="end"
+                        onChange={handleToggle(value)}
+                        checked={checked.indexOf(value) !== -1}
+                        inputProps={{ 'aria-labelledby': labelId }}
+                      />
+                    </ListItemSecondaryAction>
+                  </ListItem>
+                </Link>
+              );
+            })
+          ) : (
+            <Typography variant="h5">No content to show</Typography>
+          )}
         </List>
       </CardPage>
     </LoadingContainer>
