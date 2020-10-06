@@ -18,4 +18,5 @@ module.exports = {
   newsApiKey: process.env.NEWS_API_KEY,
   MQConnectionUrl: process.env.MQ_CONNECTION_URL,
   queueName: process.env.MQ_NAME,
+  socketPort: process.env.SOCKET_PORT,
 };
