@@ -9,7 +9,7 @@ const configForNews = {
   q: 'bitcoin',
   sources: 'bbc-news,the-verge',
   domains: 'bbc.co.uk, techcrunch.com',
-  from: '2020-09-05',
+  from: '2020-09-15',
   language: 'en',
   sortBy: 'publishedAt',
 };

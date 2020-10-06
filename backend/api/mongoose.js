@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const fs = require('fs');
-const config = require('../config').default;
+const config = require('../config');
 
 const modelPaths = ['articles/articleModel'];
 

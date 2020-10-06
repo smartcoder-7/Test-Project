@@ -1,15 +1,19 @@
 const cron = require('node-cron');
-const { mqService } = require('./MQService');
 
-function getUpdatedArticles() {
+const { mqService } = require('./MQService');
+const config = require('../../config');
+
+function _run() {
   cron.schedule('* * * * *', async function () {
     console.log('running a task every minute');
-    await mqService.publishToQueue('article-queue', { message: 'message' });
+    await mqService.publishToQueue(config.queueName, { message: 'message' });
   });
 }
 
-getUpdatedArticles();
+async function startCronJob() {
+  await _run();
+}
 
 module.exports = {
-  getUpdatedArticles,
+  startCronJob,
 };

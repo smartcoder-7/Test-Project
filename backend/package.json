@@ -23,7 +23,8 @@
     "mongoose": "^5.10.7",
     "morgan": "^1.10.0",
     "newsapi": "^2.4.1",
-    "node-cron": "^2.0.3"
+    "node-cron": "^2.0.3",
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

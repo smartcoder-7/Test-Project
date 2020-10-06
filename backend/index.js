@@ -7,10 +7,12 @@ const morgan = require('morgan');
 
 const config = require('./config');
 const initializeDB = require('./api/mongoose');
-require('./api/services/cronJob');
+const { startCronJob } = require('./api/services/cronJob');
+const { startWorker } = require('./api/services/worker');
 
-// initialize db on the top to have models available below
 initializeDB();
+startCronJob();
+startWorker();
 
 const { apiRouter } = require('./api');
 
