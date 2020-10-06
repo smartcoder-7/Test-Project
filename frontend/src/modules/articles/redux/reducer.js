@@ -33,6 +33,8 @@ const articleReducer = (state = initialState, action) =>
         draft.error = action.payload;
         draft.isSaving = false;
         break;
+      case CONSTANTS.ADD_NEW_ARTICLES:
+        draft.list = [...draft.list, ...action.payload];
       default:
         break;
     }

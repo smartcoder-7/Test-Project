@@ -5,3 +5,5 @@ export const LIST_ARTICLES_ERROR = 'articles/list/error';
 export const SAVE_ARTICLE_REQUEST = 'articles/save/request';
 export const SAVE_ARTICLE_SUCCESS = 'articles/save/success';
 export const SAVE_ARTICLE_ERROR = 'articles/save/error';
+
+export const ADD_NEW_ARTICLES = 'articles/add/action';

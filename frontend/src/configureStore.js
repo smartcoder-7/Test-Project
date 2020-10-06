@@ -12,7 +12,7 @@ import sagas from './redux/saga';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth'],
+  whitelist: ['article'],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

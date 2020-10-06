@@ -13,7 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import Link from 'components/Link';
 import LoadingContainer from 'components/LoadingContainer';
 import CardPage from 'containers/layout/CardPage';
-import { listArticlesRequest } from '../redux/actions';
+import { listArticlesRequest, addNewArticles } from '../redux/actions';
+import { subscribeToEvent, unsubscribeToEvent } from 'services/socketService';
 import useStyles from './style';
 
 export default function CheckboxListSecondary() {
@@ -21,6 +22,12 @@ export default function CheckboxListSecondary() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([1]);
   const { loading, list } = useSelector((state) => state.article);
+  useEffect(() => {
+    subscribeToEvent('new-articles', (data) => dispatch(addNewArticles(data)));
+    return () => {
+      unsubscribeToEvent('new-articles');
+    };
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(listArticlesRequest());

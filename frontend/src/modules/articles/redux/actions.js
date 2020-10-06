@@ -28,3 +28,8 @@ export const saveArticleError = (error) => ({
   type: CONSTANTS.SAVE_ARTICLE_ERROR,
   payload: error,
 });
+
+export const addNewArticles = (data) => ({
+  type: CONSTANTS.ADD_NEW_ARTICLES,
+  payload: data,
+});

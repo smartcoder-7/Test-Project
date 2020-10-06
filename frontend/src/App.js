@@ -8,7 +8,6 @@ import { SnackbarProvider } from 'notistack';
 
 import store, { history, persistor } from './configureStore';
 import Routes from './routes';
-import 'services/MQService';
 
 function App() {
   return (
