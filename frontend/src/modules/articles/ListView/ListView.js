@@ -67,14 +67,6 @@ export default function CheckboxListSecondary() {
                       primary={value.title}
                       secondary={value.description}
                     />
-                    <ListItemSecondaryAction>
-                      <Checkbox
-                        edge="end"
-                        onChange={handleToggle(value)}
-                        checked={checked.indexOf(value) !== -1}
-                        inputProps={{ 'aria-labelledby': labelId }}
-                      />
-                    </ListItemSecondaryAction>
                   </ListItem>
                 </Link>
               );
