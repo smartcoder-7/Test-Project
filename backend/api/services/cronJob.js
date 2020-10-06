@@ -40,6 +40,7 @@ function _run() {
     if (!equal(cache, response)) {
       let newArticles = diff(response, cache);
       if (newArticles) {
+        cache.write(response);
         await mqService.publishToQueue(config.queueName, newArticles);
       }
     }
