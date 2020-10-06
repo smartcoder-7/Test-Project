@@ -5,7 +5,7 @@ const config = require('../../config');
 
 io.of('/article');
 io.listen(config.socketPort);
-console.log('socket server is listening to:', config.socketPort);
+console.log('>socket server is listening to:', config.socketPort);
 
 function startWorker() {
   amqp.connect(config.MQConnectionUrl, function (err, connection) {
@@ -21,8 +21,7 @@ function startWorker() {
       channel.consume(
         config.queueName,
         function (msg) {
-          console.log('Message:', msg.content.toString());
-          io.emit('new-articles', msg);
+          io.emit('new-articles', msg.content.toString());
         },
         { noAck: true }
       );

@@ -1,5 +1,6 @@
 const NewsAPI = require('newsapi');
 const mongoose = require('mongoose');
+require('./articleModel');
 
 const Article = mongoose.model('Article');
 const config = require('../../config');
@@ -18,6 +19,11 @@ class ArticleService {
   async list() {
     const response = await newsapi.v2.everything(configForNews);
     return response;
+  }
+
+  async findOne(req, res) {
+    const existingOne = await Article.findOne({ url: req.url });
+    return existingOne;
   }
 
   async create(req, res) {

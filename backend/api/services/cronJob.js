@@ -1,29 +1,48 @@
 const cron = require('node-cron');
+const equal = require('fast-deep-equal');
 
+const { articleService } = require('../articles/articleService');
 const { mqService } = require('./MQService');
+const { cache } = require('./fakeCache');
 const config = require('../../config');
 
-const fakeArticles = [
-  {
-    author: 'Catherine Shu',
-    title:
-      'Cryptocurrency wallet BRD reaches 6 million users, driven by growth in Latin America and India',
-    description:
-      'Mobile cryptocurrency wallet BRD announced today that it now has more than six million users worldwide, thanks to strong growth in India and Latin America. With this momentum, the company expects to reach 10 million users by early 2021. Founded in 2015, Zuric…',
-    url:
-      'http://techcrunch.com/2020/10/06/cryptocurrency-wallet-brd-reaches-6-million-users-driven-by-growth-in-latin-america-and-india/',
-    urlToImage:
-      'https://techcrunch.com/wp-content/uploads/2020/10/GettyImages-1216921783.jpg?w=576',
-    publishedAt: '2020-10-06T07:15:13Z',
-    content:
-      'Mobile cryptocurrency wallet BRD announced today that it now has more than six million users worldwide, thanks to strong growth in India and Latin America. With this momentum, the company expects to … [+2634 chars]',
-  },
-];
+function diff(list1, list2) {
+  let result = null;
+
+  if (!Array.isArray(list1) || !Array.isArray) {
+    return result;
+  }
+
+  for (let i = 0; i < list1.length; i++) {
+    let found = false;
+
+    for (let j = 0; j < list2.length; j++) {
+      found = list1[i].url === list2[j].url;
+    }
+
+    if (!found) {
+      result.push(item1);
+    }
+  }
+
+  return result;
+}
 
 function _run() {
   cron.schedule('* * * * *', async function () {
-    console.log('running a task every minute');
-    await mqService.publishToQueue(config.queueName, fakeArticles);
+    const response = await articleService.list();
+
+    if (!cache) {
+      cache.write(response);
+      return;
+    }
+
+    if (!equal(cache, response)) {
+      let newArticles = diff(response, cache);
+      if (newArticles) {
+        await mqService.publishToQueue(config.queueName, newArticles);
+      }
+    }
   });
 }
 

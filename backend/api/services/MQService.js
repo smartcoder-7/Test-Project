@@ -21,7 +21,7 @@ class MQService {
           return callback(error2);
         }
         this.channel = channel;
-        console.log('> successfully connected to the MQ');
+        console.log('> Successfully connected to the MQ');
       });
     });
   }
