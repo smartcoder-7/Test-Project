@@ -29,7 +29,9 @@ class MQService {
   }
 
   async publishToQueue(queueName, data) {
-    await this.channel.sendToQueue(queueName, new Buffer(data));
+    this.channel.assertQueue(queueName);
+    const stringData = JSON.stringify(data);
+    await this.channel.sendToQueue(queueName, Buffer.from(stringData));
   }
 }
 

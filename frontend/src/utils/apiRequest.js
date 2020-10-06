@@ -43,6 +43,7 @@ async function request(
     if (isToken) {
       options.headers.Authorization = `Bearer ${store.getState().auth.token}`;
     }
+    console.log('I am here ============>');
 
     fetch(requestUrl, options)
       .then((result) => {

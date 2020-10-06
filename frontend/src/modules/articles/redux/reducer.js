@@ -27,7 +27,6 @@ const articleReducer = (state = initialState, action) =>
         draft.isSaving = true;
         break;
       case CONSTANTS.SAVE_ARTICLE_SUCCESS:
-        console.log('saved article', action.payload);
         draft.isSaving = false;
         break;
       case CONSTANTS.SAVE_ARTICLE_ERROR:

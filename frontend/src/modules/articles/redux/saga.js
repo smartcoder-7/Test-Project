@@ -9,24 +9,26 @@ import {
   saveArticleSuccess,
   saveArticleError,
 } from './actions';
+import notifier from 'utils/notifier';
 
 function* listArticles() {
   try {
     const data = yield call(request, '/articles');
-    console.log(data);
     yield put(listArticlesSuccess(data.articles));
   } catch (error) {
     yield put(listArticlesError(error));
+    notifier.error(error.message || 'Something went wrong!');
   }
 }
 
 function* saveArticle(action) {
   try {
-    console.log('I am calling');
     const data = yield call(request, '/articles', 'POST', action.payload);
     yield put(saveArticleSuccess(data));
+    notifier.success('Successfully saved!');
   } catch (error) {
     yield put(saveArticleError(error));
+    notifier.error(error.message || 'Something went wrong!');
   }
 }
 

@@ -32,7 +32,7 @@ export default function ArticleCard({ data, onSave, isSaving }) {
     setExpanded(!expanded);
   };
 
-  const handleSave = (data) => {
+  const handleSave = () => {
     onSave(data);
   };
 
